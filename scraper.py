@@ -12,10 +12,10 @@ def job():
     # airbnb link
     checkInLink = "https://www.airbnb.com/s/Sacramento--CA--United-States/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_dates%5B%5D=december&flexible_trip_dates%5B%5D=november&flexible_trip_lengths%5B%5D=weekend_trip&date_picker_type=calendar&query=Sacramento%2C%20CA%2C%20United%20States&place_id=ChIJ-ZeDsnLGmoAR238ZdKpqH5I&checkin="
     checkOutLink = "&checkout="
-    restLink = "&adults=2&source=structured_search_input_header&search_type=autocomplete_click"
+    restLink = "&adults=2&source=structured_search_input_header&search_type=filter_change&room_types%5B%5D=Entire%20home%2Fapt"
 
     # driver setup
-    PATH = "/Users/vstatnyk/Desktop/airbnbscraper/chromedriver"
+    PATH = "/Users/vstatnyk/Documents/GitHub/AirbnbScraper/chromedriver"
     chrome_options = Options()                          # this will allow for script to run in the background
     chrome_options.set_headless(headless=True)          # this will allow for script to run in the background
     driver = webdriver.Chrome(PATH,chrome_options=chrome_options)
@@ -65,24 +65,18 @@ def job():
         
     with open("output.csv", 'a') as outfile:
         writer = csv.writer(outfile)
+        writer.writerow('\n')
         writer.writerow(output)
         output.clear
     driver.quit()
 
 
-
-# initial document stup
-header = [' Check in\ndate', '1 day', '2 days', '5 days', '10 days', '15 days', '25 days',]
-with open("output.csv", 'a') as outfile:
-    writer = csv.writer(outfile)
-    writer.writerow(header)
-
 # output list 
 output = []
 
-schedule.every().day.at("09:00").do(job)
-schedule.every().day.at("15:00").do(job)
-schedule.every().day.at("20:00").do(job)
+schedule.every().day.at("11:29").do(job)
+schedule.every().day.at("11:28").do(job)
+schedule.every().day.at("11:27").do(job)
 
 while True:
     schedule.run_pending()
