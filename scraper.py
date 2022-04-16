@@ -4,7 +4,7 @@ import time
 from time import sleep
 import csv
 import datetime     #needed for time opperations
-import schedule
+# import schedule
 
 
 def job():
@@ -16,9 +16,9 @@ def job():
 
     # driver setup
     PATH = "/Users/vstatnyk/Documents/GitHub/AirbnbScraper/chromedriver"
-    chrome_options = Options()                          # this will allow for script to run in the background
-    chrome_options.set_headless(headless=True)          # this will allow for script to run in the background
-    driver = webdriver.Chrome(PATH,chrome_options=chrome_options)
+    # chrome_options = Options()                          # this will allow for script to run in the background
+    # chrome_options.set_headless(headless=True)          # this will allow for script to run in the background
+    driver = webdriver.Chrome(PATH) #,chrome_options=chrome_options)
 
     # time setup
     DELTA_PST = datetime.timedelta(hours = 7)           # time conversion interval
@@ -74,11 +74,14 @@ def job():
 # output list 
 output = []
 
-schedule.every().day.at("11:29").do(job)
-schedule.every().day.at("11:28").do(job)
-schedule.every().day.at("11:27").do(job)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+job()
+
+# schedule.every().day.at("11:29").do(job)
+# schedule.every().day.at("11:28").do(job)
+# schedule.every().day.at("11:27").do(job)
+
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
 
